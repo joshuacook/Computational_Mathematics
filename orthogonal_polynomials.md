@@ -197,9 +197,8 @@ R_n^m(\rho)+R_{n-2}^m(\rho)&=\rho\left[R_{n-1}^{\left|m-1\right|}(\rho)+R_{n-1}^
 \end{align*}
 
 
-
-
-**Problem 2.** Show that the radial polynomials are orthogonal with respect to
+## Problem 2.
+Show that the radial polynomials are orthogonal with respect to
 the inner product
 
 Two functions $F_1$ and $F_2$ are orthogonal over a unit cirle if:
@@ -244,7 +243,8 @@ Therefore, our problem is reduced to finding an orthogonal radial basis.
 \int_0^1R_iR_j\rho d\rho &= \delta_j\\
 \end{align*}
 
-**Problem 3.** Write a function named `zernike_Rcoeffs` that takes as input $n$
+## Problem 3.
+Write a function named `zernike_Rcoeffs` that takes as input $n$
 and $m$ and returns the coefficients of $R_n^m(\rho)$ as a 1d array of size $n +
 1$.
 
@@ -283,7 +283,8 @@ and $m$ and returns the coefficients of $R_n^m(\rho)$ as a 1d array of size $n +
 
 \pagebreak
 
-**Problem 4.** Write two functions named `zernike_even` and `zernike_odd` that
+## Problem 4.
+Write two functions named `zernike_even` and `zernike_odd` that
 take as input $n$, $m$, $\rho$, and $\theta$, where $[\rho,\theta]$ represents
 the mesh grid $[0, 1] \times [0, 2\pi]$, and return, respectively,
 $Z_n^m(\rho,\theta)$ and $Z_n^{-m}(\rho,\theta)$.
@@ -306,7 +307,8 @@ evaluate the polynomials over $[0, 1] \times [0, 2\pi]$.
             Z = Z + coeffs[k]*Rho**k*np.sin(m*Theta)    
         return Z   
 
-**Problem 5.** Write a script that for given $n$ and $m$:
+## Problem 5.
+Write a script that for given $n$ and $m$:
 
 1.  generates 1d arrays $0 \leq \rho \leq 1$ and $0 \leq \theta \leq 2\pi$,
 2. generates the mesh grid $[0, 1] \times [0, 2\pi]$ from the 1d arrays in 1.,
@@ -314,7 +316,8 @@ evaluate the polynomials over $[0, 1] \times [0, 2\pi]$.
 4. produces polar plots of $Z_n^m(\rho,\theta)$ and $Z_n^{-m}(\rho,\theta)$ over
 the unit disk.
 
-**Problem 6.** Use the script and functions of problems 3 - 5 to generate the
+Problem 6.
+Use the script and functions of problems 3 - 5 to generate the
 plots of the first 15 Zernike polynomials, corresponding to $n$ = 0, 1, 2, 3, 4,
 and the corresponding admissible values of $m$ for each $n$.
 
