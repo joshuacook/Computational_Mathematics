@@ -241,11 +241,11 @@ julia = lambda z: z*np.sin(z)+z*np.cos(z) + C
 
 \includegraphics[width=7in]{Untitled1_files/Untitled1_32_0.png}
 
-\paragraph{Variant 3, \texttt{juliaIterateMap(500,1000,10)}}
+\paragraph{Variant 3, \texttt{juliaIterateMap(50,1000,10)}}
 
 ~~~
-julia = lambda z: np.sqrt(np.sinh(z**2)) + 0.065+0.122j
+julia = lambda z: np.sinh(z)+np.cosh(z) 
 ~~~
 
-\includegraphics[width=7in]{Untitled1_files/Untitled1_34_0.png}
+\includegraphics[width=7in]{Untitled1_files/Untitled1_33_0.png}
 
