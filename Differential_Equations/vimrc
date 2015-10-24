@@ -1,0 +1,111 @@
+" load pathogen
+execute pathogen#infect()
+
+" formatting
+  syntax enable 
+  filetype plugin indent on
+  set mouse=a
+  set foldmethod=syntax
+  set cmdheight=2
+  set shm=a
+  set background=light
+  colorscheme solarized
+  " colorscheme tropikos
+  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+  let g:syntastic_auto_loc_list=1
+  set autoindent
+  set history=1000
+  set wrap
+  set number
+  set expandtab
+  set shiftwidth=2
+  set softtabstop=2
+  set backspace=indent,eol,start
+
+
+" airline settings 
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_tabs = 1
+
+" evernote development
+  let g:evervim_devtoken='S=s1:U=1085d:E=155e73df134:C=14e8f8cc420:P=1cd:A=en-devtoken:V=2:H=26086d1414e3d71a3b48c09d8cabb3c4'
+
+" ctrlp 
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+
+" leader and mode
+  let mapleader = "\<space>"
+  map ; :
+  map <Leader>w :w<cr>
+  map <Leader><Leader> V
+  vmap v <Plug>(expand_region_expand)
+  vmap <C-v> <Plug>(expand_region_shrink)
+  map <C-n> :NERDTreeToggle<CR>
+  imap <C-PageUp> <Esc> Shift-4 i <CR>
+  map <Leader>s :%s/
+
+" Leader Commands
+  nmap <Leader>q :wq!<CR> 
+  vmap <Leader>y "+y      
+  vmap <Leader>d "+d      
+  nmap <Leader>p <CR>"+p  
+  nmap <Leader>P <CR>"+P
+  vmap <Leader>p <CR>"+p
+  vmap <Leader>P <CR>"+P
+  map  <Leader>f :tabfind
+  map  <Leader>t :tabonly
+  map  <Leader>i :set paste<CR>i
+  nnoremap <Leader>r :source ~/.vimrc<cr>
+  map <Leader>z <C-z>
+
+" supertab
+imap <tab> <c-n>
+
+" code folding
+  nmap <S-Up> zm
+  nmap <S-Down> zr
+  imap <S-Up> <esc>zc
+  imap <S-Down> <esc>zo
+  nmap <Up> zc
+  nmap <Down> zo
+  
+
+" tabs and buffers
+  nmap <S-Left> :w<CR>:tabp<CR>
+  nmap <S-Right> :w<CR>:tabn<CR>
+  nmap <Left> :w<CR>:bp<CR>
+  nmap <Right> :w<cr>:bn<CR>
+  imap <S-Left> <esc>:w<CR>:bp<CR>
+  imap <S-Right> <esc>:w<cr>:bn<CR>
+  nmap <C-Left> <C-w>w
+  nmap <Leader>c :bd
+  
+  
+" for ease in writing functions in C
+  nnoremap <Leader>C :call C_mode()<cr>
+  nnoremap <Leader>R :call Leave_C_mode()<cr>
+
+function! C_mode()
+  set foldmethod=syntax
+  inoremap { <CR>{<CR><BS>}<Esc>ko
+  inoremap ( ()<Esc>i
+  inoremap [ []<Esc>i
+  inoremap () ()
+  inoremap [] []
+  inoremap (( (
+  inoremap {{ {
+endfunction
+  
+function! Leave_C_mode()
+  set foldmethod=indent
+  inoremap { {
+  inoremap ( (
+  inoremap [ [
+  inoremap (( ((
+  inoremap {{ {{
+endfunction
+  
+" abbreviations
+  source ~/.vim/abbreviations.vim
+  source ~/.vim/personal.vim

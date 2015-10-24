@@ -1,0 +1,70 @@
+# history searching tools
+function historysearch {
+  ack "$1" ~/.history
+}
+
+function historycopy {
+  mycopy=$(historysearch $1 | ack $2 | rev | cut -d: -f1 | rev)
+  echo -n ${mycopy%\\n} | pbcopy
+}
+ 
+function vimfuzzy {
+  vim $(fzf)
+}
+
+function searchCode {
+  find -iname \*.$2 | xargs ack "$1"
+}
+
+function push_dot {
+  my_dir=`pwd` 
+  cd ~/src/dotfiles
+  ./push.sh
+  cd $my_dir
+}
+
+function blog {
+  if [ -a ~/src/Sites/pelican-blog/content/posts/*-*-*-$1.md ]
+  then
+    v ~/src/Sites/pelican-blog/content/posts/*-*-*-$1.md
+  else
+    blognew "$1"
+  fi 
+}
+
+function blognew {
+  touch ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Title:" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Date: `date +%Y-%m-%d`" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Category:" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Tags:">> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Slug: $1" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Authors: Joshua Cook" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  echo "Summary:" >> ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+  vim ~/src/Sites/pelican-blog/content/posts/`date +%Y-%m-%d`-$1.md
+}
+
+function jcio {
+  cd ~/src/Sites/pelican-blog/
+  git add .
+  git commit -m "$1" --date="$2"
+  git push
+  sudo pelican -s publishconf.py
+  cd ~/src/Sites/joshuacook.github.io/
+  git add .
+  git commit -m "$1" --date="$2"
+  git push 
+  cd -
+}
+
+
+function clean_logs {
+  cd ~/tmp/bash_logs
+  for log in *.log; do 
+    tmp=$log
+    perl ~/bin/fix_log.pl $log > ${tmp:0:15}.log
+    mv ${tmp:0:15}.log ../../logs
+    rm $log 
+  done
+}
+
