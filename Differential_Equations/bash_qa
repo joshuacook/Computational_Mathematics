@@ -1,0 +1,52 @@
+alias ke='knife environment show'
+alias kl='knife node list | ack '
+alias kn='knife node show'
+alias knip='knife_ip'
+alias qa='sshmy sfdc'
+alias qc='callmy'
+alias qcon='cd ~/current && script/console'
+alias qC='callMy'
+alias qd='depmy'
+alias qf='sshnode_frontend'
+alias qn='sshnode_staging'
+alias qr='sshnode_ringswitch'
+alias qs='sshmy'  
+alias qw='sshnode_worker'
+
+# QA tools 
+function sshmy {
+  sshnode staging-collapsed-$1
+}
+
+function sshnode_staging {
+  sshnode staging-$1
+}
+
+function sshnode_frontend {
+  sshnode staging-$1-fe1
+}
+
+function sshnode_worker {
+  sshnode staging-$1-cew1
+}
+
+function sshnode_ringswitch {
+  sshnode staging-$1-rs
+}
+
+function depmy {
+  bundle exec cap collapsed deploy -S name=staging-collapsed-$1
+}
+
+function callmy {
+  invoke_call sip --call-scenario="$2" --client-number=3104331646 --promo-number=$1 --ringswitch-node=$SFDC_IP
+}
+
+function callMy {
+  invoke_call sip --promo-number=$1 --ringswitch-node=$2 --call-scenario="$3"
+}
+
+function knife_ip {
+  knife node show staging-$1 | ack -B 3 IP:
+}
+

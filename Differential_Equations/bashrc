@@ -1,0 +1,19 @@
+# 
+# Environment 
+#    Any path manipulation goes here.
+PATH=$PATH:/usr/local/mysql/bin:/Users/jcook/bin:/Users/jcook/lib:/Users/jcook/.cabal/bin:/opt/local/bin:/opt/local/sbin
+DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
+
+#
+# Config
+# Make changes here to describe your environment
+export USE_TERMINAL_THEMES=1
+export GREP_OPTIONS='--color=auto' 
+export HOSTNAME="$(hostname)"
+export HOSTNAME_SHORT="${HOSTNAME%%.*}"
+export HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
+export HISTFILESIZE=
+export EDITOR=vim
+LS_COLORS=gxfxbEaEBxxEhEhBaDaCaD # $LS_COLORS:'di=0;30:'
+export LS_COLORS
+

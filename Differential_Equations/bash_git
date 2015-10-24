@@ -1,0 +1,15 @@
+alias gcm='git checkout master'
+alias gd='git diff'
+alias gf='git fetch'
+alias gg='git add . && git commit'
+alias gp='git pull'
+alias gs='git status'
+
+function subtree_me {
+ git remote add -f #1 #2 
+ git merge -s ours --no-commit #1/master 
+ git read-tree --prefix=#2 -u #1/master
+ git commit -m "Merge #1 project as our subdirectory"
+ git pull -s subtree #1 master 
+}
+
